@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "3cfa29bc-e2d8-4583-9328-fb008f13a488",
+		"name": "jeleapps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30127655",
+		"_collection_link": "https://interstellar-station-60094.postman.co/workspace/My-Workspace~96e6c78a-57d2-4af4-8410-77d5a0df4b47/collection/30127655-3cfa29bc-e2d8-4583-9328-fb008f13a488?action=share&source=collection_link&creator=30127655"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"token\", pm.response.json().data.access_token);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/api/registration?email=ocus2887.u@gmail.com&password=QWEasd123&password_confirmation=QWEasd123&gender=male",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"api",
+						"registration"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "ocus2887.u@gmail.com",
+							"description": "Валидный email, уникальный в системе"
+						},
+						{
+							"key": "password",
+							"value": "QWEasd123",
+							"description": "Пароль, от 6 символов"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "QWEasd123",
+							"description": "Подтверждение пароля"
+						},
+						{
+							"key": "gender",
+							"value": "male",
+							"description": "male/female"
+						}
+					]
+				},
+				"description": "# api/registration\n\n## Описание\n\nРегистрация пользователя в системе.\n\nтребуеммые данные:\n\nemail - уникальный в системе.\n\npassword - пароль от 6 символов.\n\npassword_confirmation - подтверждение пароля.\n\ngender - пол (male/female)\n\n## Пример ответа\n\n### Success Response (201 OK)\n\n``` json\n{\n    \"data\": {\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"example@gmail.com\",\n            \"gender\": \"male\"\n        },\n        \"access_token\": \"token_id|token_name\"\n    }\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"token\", pm.response.json().data.access_token);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/api/login?email=ocus288.u@gmail.com&password=QWEasd123",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "ocus288.u@gmail.com",
+							"description": "Валидный email, уникальный в системе"
+						},
+						{
+							"key": "password",
+							"value": "QWEasd123",
+							"description": "Пароль, от 6 символов"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/api/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"api",
+						"profile"
+					]
+				},
+				"description": "# api/profile\n\n## Описание\n\nВозврашает информацию о авторизованной пользователе.\n\nтребуется токен авторизации.\n\n## Пример вывода\n\n### Success Response (200 OK)\n\n``` json\n{\n  \"data\": {\n    \"id\": 1,\n    \"email\": \"user@example.com\",\n    \"gender\": \"male\"\n  }\n}\n\n ```"
+			},
+			"response": []
+		}
+	]
+}
